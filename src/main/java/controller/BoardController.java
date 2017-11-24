@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import model.BoardDataBean;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -23,6 +24,7 @@ import dao.MybatisBoardDBBean;
 
 @Controller
 public class BoardController {
+	private Logger logger = Logger.getLogger(MemberController.class);
 	ModelAndView mv = new ModelAndView();
 	String boardid = "1";
 	String remoteId = "";
@@ -33,8 +35,9 @@ public class BoardController {
 
 	@ModelAttribute
 	public void addAttributes(HttpServletRequest request) {
+		logger.info("init addAttributes()..");
 		try {
-			request.setCharacterEncoding("EUC-KR");
+			request.setCharacterEncoding("UTF-8");
 		} catch (UnsupportedEncodingException e1) {
 			// TODO: handle exception
 			e1.printStackTrace();
@@ -54,15 +57,14 @@ public class BoardController {
 			boardid = "1";
 		else
 			boardid = (String) session.getAttribute("boardid");
-		System.out.println(boardid);
+		
 	}
 
 	@RequestMapping(value = "list")
 	public ModelAndView list() throws Exception {
-
+		logger.info("init list()..");
 		int pageSize = 10;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		System.out.println(pageNum + "================");
 		int currentPage = pageNum;
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
@@ -115,9 +117,9 @@ public class BoardController {
 	@RequestMapping(value = "writeUploadPro")
 	public ModelAndView writeUpoadPro(MultipartHttpServletRequest multipart,
 			BoardDataBean article) throws Exception {
-
+		logger.info("init writeUpoadPro()..");
 		article.setBoardid(boardid);
-		System.out.println(article);
+		
 		dbPro.insertArticle(article);
 		mv.clear();
 		mv.addObject("pageNum", pageNum);
@@ -127,8 +129,9 @@ public class BoardController {
 
 	@RequestMapping(value = "content")
 	public ModelAndView content(int num) throws Exception {
+		logger.info("init content()..");
 		BoardDataBean article = dbPro.getArticle(num);
-
+		
 		mv.clear();
 		mv.addObject("pageNum", pageNum);
 		mv.addObject("article", article);
@@ -139,6 +142,7 @@ public class BoardController {
 
 	@RequestMapping(value = "updateForm")
 	public ModelAndView updateForm(int num) throws Exception {
+		logger.info("init updateForm()..");
 		BoardDataBean article = dbPro.getArticle(num);
 
 		mv.clear();
@@ -151,6 +155,7 @@ public class BoardController {
 
 	@RequestMapping(value = "updatePro")
 	public ModelAndView updatePro(BoardDataBean article) throws Exception {
+		logger.info("init updatePro()..");
 		article.setBoardid(boardid);
 		int check = dbPro.updateArticle(article);
 
@@ -164,7 +169,7 @@ public class BoardController {
 
 	@RequestMapping(value = "deleteForm")
 	public ModelAndView deleteForm(int num) throws Exception {
-
+		logger.info("init deleteForm()..");
 		mv.clear();
 		mv.addObject("num", num);
 		mv.addObject("pageNum", pageNum);
@@ -175,6 +180,7 @@ public class BoardController {
 
 	@RequestMapping(value = "deletePro")
 	public ModelAndView deletePro(int num, String passwd) throws Exception {
+		logger.info("init deletePro()..");
 		int check = dbPro.deleteArticle(num, passwd);
 
 		mv.clear();
