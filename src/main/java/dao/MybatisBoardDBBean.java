@@ -6,20 +6,22 @@ import java.util.List;
 import model.BoardDataBean;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
+
+import controller.MemberController;
 
 public class MybatisBoardDBBean extends MybatisConnector {
+	private Logger logger = Logger.getLogger(MemberController.class);
 	private final String namespace = "ldg.mybatis";
 	private static MybatisBoardDBBean instance = new MybatisBoardDBBean();
 	SqlSession sqlSession;
 
 	public static MybatisBoardDBBean getInstance() {
-		System.out.println("MybatisBoardDBBean");
 		return instance;
 	}
 
 	public int getArticleCount(String boardid) throws Exception {
 		sqlSession = sqlSession();
-		System.out.println("getArticleCount:" + boardid);
 		try {
 			HashMap map = new HashMap();
 			map.put("boardid", boardid);
@@ -33,7 +35,6 @@ public class MybatisBoardDBBean extends MybatisConnector {
 	public List getArticles(int start, int end, String boardid)
 			throws Exception {
 		sqlSession = sqlSession();
-		System.out.println("getArticles===old");
 		HashMap map = new HashMap();
 		map.put("start", start);
 		map.put("end", end);
@@ -91,10 +92,11 @@ public class MybatisBoardDBBean extends MybatisConnector {
 			article.setRef(ref);
 			article.setRe_step(re_step);
 			article.setRe_level(re_level);
-			System.out.println("insert:" + article);
+			logger.info("insert:" + article);
+
 			int result = sqlSession.insert(namespace + ".insertArticle_insert",
 					article);
-			System.out.println("insert  0k:" + result);
+			logger.info("insert  0k:" + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

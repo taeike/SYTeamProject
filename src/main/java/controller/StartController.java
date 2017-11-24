@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @Controller
 public class StartController {
-
+	private Logger logger = Logger.getLogger(MemberController.class);
 	ModelAndView mv = new ModelAndView();
 	@Autowired 
 	SessionLocaleResolver localeResolver; 
@@ -31,11 +32,9 @@ public class StartController {
 	
 	@RequestMapping(value = "main")
 	public ModelAndView main(Locale locale, HttpServletRequest request, Model model) { 
-		System.out.println("init main()...");
-		System.out.println("선택된 언어 : "+locale);
+		logger.info("init main().. locale = "+ locale );
 		mv.addObject("na", messageSource.getMessage("sidebar.login", null, locale));
 		mv.setViewName("main/main");
-		System.out.println("completer main()");
 		return mv; 
 	}
 	
