@@ -26,6 +26,9 @@ select {
 	font-size: 13px;
 	border: 1px solid border-radius: 3px;
 }
+div{
+margin-top: 100px;
+}
 </style>
 
 <script>
@@ -108,14 +111,10 @@ select {
 	}
 </script>
 <body>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
 
 	<center>
+	<div>
 		<form action="joinPro" method="post" onSubmit="return checkIt()"
 			class="form-inline" name="userinput">
 
@@ -372,6 +371,7 @@ select {
 				</tr>
 			</table>
 		</form>
+		</div>
 	</center>
 </body>
 </html>

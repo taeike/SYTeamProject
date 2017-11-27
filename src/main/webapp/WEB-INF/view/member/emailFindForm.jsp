@@ -16,6 +16,12 @@
 <title>Insert title here</title>
 </head>
 
+<style>
+div{
+margin-top: 100px;
+}
+</style>
+
 <script>
 	function checkIt() {
 
@@ -39,13 +45,10 @@
 <body>
 
 	
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
 
 	<center>
+	<div>
 		<form action="emailFindPro" method="post" onSubmit="return checkIt()"
 			class="form-inline" name="userinput">
 			<table style="width =: 50%">
@@ -99,6 +102,7 @@
 			</table>
 
 		</form>
+		</div>
 	</center>
 </body>
 </html>
