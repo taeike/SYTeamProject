@@ -75,7 +75,7 @@ function getCookie(cookieName) {
 <title>Insert title here</title>
 </head>
 <style>
-div {
+#formdiv {
 	width: 400px;
 	height: 400px;
 	border: 3px solid lightgrey;
@@ -85,17 +85,8 @@ div {
 </style>
 <body>
 	<center>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<div class="form">
+
+		<div id="formdiv" class="form">
 
 			<form accept-charset="UTF-8" method="post" action="loginPro">
 				<table>

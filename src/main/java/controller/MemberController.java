@@ -37,7 +37,7 @@ public class MemberController {
    public ModelAndView joinForm(){
       logger.info("init joinForm()..");
       mv.clear();
-      mv.setViewName("member/joinForm");
+      mv.setViewName("head/member/joinForm");
       return mv;
    }
 
@@ -49,7 +49,7 @@ public class MemberController {
       mv.clear();
       mv.addObject("check", check);
       mv.addObject("email", email);
-      mv.setViewName("member/confirmId");
+      mv.setViewName("head/member/confirmId");
 
       return mv;
    }
@@ -59,7 +59,7 @@ public class MemberController {
       logger.info("init joinPro()..");
 
       dbPro.insertMember(article);
-      mv.setViewName("member/joinPro");
+      mv.setViewName("head/member/joinPro");
 
       return mv;
    }
@@ -69,7 +69,7 @@ public class MemberController {
       logger.info("init joinPro()..");
 
       mv.clear();
-      mv.setViewName("member/loginForm");
+      mv.setViewName("head/member/loginForm");
 
 
       return mv;
@@ -92,7 +92,7 @@ public class MemberController {
 
       mv.clear();
       mv.addObject("check", check);
-      mv.setViewName("member/loginPro");
+      mv.setViewName("head/member/loginPro");
 
       return mv;
 
@@ -103,7 +103,7 @@ public class MemberController {
    public ModelAndView emailFindForm(){
 
       mv.clear();
-      mv.setViewName("member/emailFindForm");
+      mv.setViewName("head/member/emailFindForm");
 
       return mv;
 
@@ -117,7 +117,7 @@ public class MemberController {
       mv.clear();
       mv.addObject("dbEmail", dbEmail);
 
-      mv.setViewName("member/emailFindPro");
+      mv.setViewName("head/member/emailFindPro");
 
       return mv;
 
@@ -127,7 +127,7 @@ public class MemberController {
    public ModelAndView passwordFindForm(){
 
       mv.clear();
-      mv.setViewName("member/passwordFindForm");
+      mv.setViewName("head/member/passwordFindForm");
 
       return mv;
 
@@ -142,7 +142,7 @@ public class MemberController {
       mv.addObject("dbPassword", dbPassword);
 
 
-      mv.setViewName("member/passwordFindPro");
+      mv.setViewName("head/member/passwordFindPro");
 
       return mv;
 
@@ -154,7 +154,7 @@ public class MemberController {
       mv.clear();
       HttpSession session = request.getSession();
       session.invalidate();
-      mv.setViewName("main/main");
+      mv.setViewName("head/main/main");
 
       return mv;
 

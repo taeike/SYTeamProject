@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.1">
 	<jsp-config>
 		<jsp-property-group>
-			<url-pattern>/WEB-INF/view/main/*</url-pattern>
+			<url-pattern>/WEB-INF/view/head/*</url-pattern>
 			<include-prelude>/WEB-INF/common/head.jsp</include-prelude>
 		</jsp-property-group>
 	</jsp-config>

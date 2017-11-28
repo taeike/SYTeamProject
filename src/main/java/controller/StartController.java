@@ -34,7 +34,7 @@ public class StartController {
 	public ModelAndView main(Locale locale, HttpServletRequest request, Model model) { 
 		logger.info("init main().. locale = "+ locale );
 		mv.addObject("na", messageSource.getMessage("sidebar.login", null, locale));
-		mv.setViewName("main/main");
+		mv.setViewName("head/main/main");
 		return mv; 
 	}
 	

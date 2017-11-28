@@ -97,7 +97,7 @@ public class BoardController {
 		mv.addObject("pageSize", pageSize);
 		mv.addObject("number", number);
 		mv.addObject("articleList", articleList);
-		mv.setViewName("board/list");
+		mv.setViewName("head/board/list");
 		return mv;
 	}
 
@@ -110,7 +110,7 @@ public class BoardController {
 		mv.addObject("re_level", article.getRe_level());
 		mv.addObject("pageNum", pageNum);
 
-		mv.setViewName("board/writeUploadForm");
+		mv.setViewName("head/board/writeUploadForm");
 		return mv;
 	}
 
@@ -135,7 +135,7 @@ public class BoardController {
 		mv.clear();
 		mv.addObject("pageNum", pageNum);
 		mv.addObject("article", article);
-		mv.setViewName("board/content");
+		mv.setViewName("head/board/content");
 
 		return mv;
 	}
@@ -148,7 +148,7 @@ public class BoardController {
 		mv.clear();
 		mv.addObject("pageNum", pageNum);
 		mv.addObject("article", article);
-		mv.setViewName("board/updateForm");
+		mv.setViewName("head/board/updateForm");
 
 		return mv;
 	}
@@ -162,7 +162,7 @@ public class BoardController {
 		mv.clear();
 		mv.addObject("pageNum", pageNum);
 		mv.addObject("check", check);
-		mv.setViewName("board/updatePro");
+		mv.setViewName("head/board/updatePro");
 
 		return mv;
 	}
@@ -173,7 +173,7 @@ public class BoardController {
 		mv.clear();
 		mv.addObject("num", num);
 		mv.addObject("pageNum", pageNum);
-		mv.setViewName("board/deleteForm");
+		mv.setViewName("head/board/deleteForm");
 
 		return mv;
 	}
@@ -186,7 +186,7 @@ public class BoardController {
 		mv.clear();
 		mv.addObject("check", check);
 		mv.addObject("pageNum", pageNum);
-		mv.setViewName("board/deletePro");
+		mv.setViewName("head/board/deletePro");
 
 		return mv;
 	}
