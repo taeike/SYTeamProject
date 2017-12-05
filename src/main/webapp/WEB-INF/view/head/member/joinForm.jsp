@@ -26,9 +26,9 @@ select {
 	font-size: 13px;
 	border: 1px solid border-radius: 3px;
 }
-div{
+/* div{
 margin-top: 100px;
-}
+} */
 </style>
 
 <script>

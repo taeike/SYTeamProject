@@ -6,8 +6,8 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<!-- <link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
 <link rel="stylesheet"
    href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet"
@@ -25,108 +25,20 @@
    width: 100%;
 }
 
-.main-menu:hover, nav.main-menu.expanded {
-   width: 250px;
-   overflow: visible;
-}
-
-.main-menu {
-   background: #fbfbfb;
-   border-right: 1px solid #e5e5e5;
-   position: absolute;
-   top: 0;
-   bottom: 0;
-   height: 100%;
-   left: 0;
-   width: 40px;
-   overflow: hidden;
-   -webkit-transition: width .05s linear;
-   transition: width .05s linear;
-   -webkit-transform: translateZ(0) scale(1, 1);
-   z-index: 1000;
-}
-
-.main-menu>ul {
-   margin: 100px 0 0 0;
-}
-
-.main-menu li {
-   position: relative;
-   display: block;
-   width: 100%;
-   margin: 20px 0 0 0;
-}
-
-.main-menu li>a {
-   position: relative;
-   display: table;
-   border-collapse: collapse;
-   border-spacing: 0;
-   color: #999;
-   font-family: arial;
-   font-size: 14px;
-   text-decoration: none;
-   -webkit-transform: translateZ(0) scale(1, 1);
-   -webkit-transition: all .1s linear;
-   transition: all .1s linear;
-}
-
-.main-menu .nav-text {
-   padding-left: 10%;
-   position: relative;
-   display: table-cell;
-   vertical-align: middle;
-   width: 100%;
+.menu1 {
    font-family: 'Titillium Web', sans-serif;
    position: relative;
-}
-
-.main-menu>ul.logout {
-   position: absolute;
-   left: 3px;
-   bottom: 0;
-}
-
-.no-touch .scrollable.hover {
-   overflow-y: hidden;
-}
-
-.no-touch .scrollable.hover:hover {
-   overflow-y: auto;
-   overflow: visible;
-}
-
-a:hover, a:focus {
+   color: #000000;
+   font-size: 11px;
    text-decoration: none;
 }
 
-nav {
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   -ms-user-select: none;
-   -o-user-select: none;
-   user-select: none;
-}
-
-nav ul, nav li {
-   outline: 0;
-   margin: 0;
-   padding: 0;
-}
-
-.main-menu li:hover>a, nav.main-menu li.active>a, .dropdown-menu>li>a:hover,
-   .dropdown-menu>li>a:focus, .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover,
-   .dropdown-menu>.active>a:focus, .no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
-   .dashboard-page nav.dashboard-menu ul li.active a {
-   color: #fff;
-   background-color: #5fa2db;
-}
-
-.sidebar {
-   float: left;
-   background: #e2e2e2;
-   width: 100%;
-   height: 100%;
+.menu2 {
+   font-family: 'Titillium Web', sans-serif;
+   position: relative;
+   color: #000000;
+   font-size: 13px;
+   text-decoration: none;
 }
 
 @font-face {
@@ -137,47 +49,249 @@ nav ul, nav li {
       url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff)
       format('woff');
 }
+
+.btn1 {
+   position: fixed;
+   right: 0px;
+   top: 50%;
+   margin-top: -30px;
+   width: 30px;
+   height: 30px;
+   cursor: pointer;
+}
+
+.side_panel {
+   position: fixed;
+   right: 0px;
+   top: 0;
+   width: 250px;
+   height: 100%;
+   background: #FFFFFF;
+   border-left: 1px #D8D8D8 solid;
+   z-index: 99;
+   font-size: 11px;
+}
+
+.idsave {
+   float: left;
+   text-align: left;
+   padding-left: 40px;
+}
+
+.button {
+   width: 170px;
+}
+
+.button2 {
+   width: 90px;
+}
+
+a {
+   text-decoration: none;
+}
+
+.keyword {
+   width: 150px;
+   height: 22px;
+   line-height: 22px;
+   padding: 0 0 0 3px;
+   border: 0;
+   border-bottom: 1px #333 solid;
+   font-size: 11px;
+   color: #7c8389;
+   background: #fff;
+}
 </style>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+      // 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
+      var userInputEmail = getCookie("userInputEmail");
+      $("input[name='email']").val(userInputEmail);
+
+      if ($("input[name='email']").val() != "") { // 그 전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
+         $("#emailStore").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
+      }
+
+      $("#emailStore").change(function() { // 체크박스에 변화가 있다면,
+         if ($("#emailStore").is(":checked")) { // ID 저장하기 체크했을 때,
+            var userInputEmail = $("input[name='email']").val();
+            setCookie("userInputEmail", userInputEmail, 7); // 7일 동안 쿠키 보관
+         } else { // ID 저장하기 체크 해제 시,
+            deleteCookie("userInputEmail");
+         }
+      });
+
+      // ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
+      $("input[name='email']").keyup(function() { // ID 입력 칸에 ID를 입력할 때,
+         if ($("#emailStore").is(":checked")) { // ID 저장하기를 체크한 상태라면,
+            var userInputEmail = $("input[name='email']").val();
+            setCookie("userInputEmail", userInputEmail, 7); // 7일 동안 쿠키 보관
+         }
+      });
+   });
+
+   function setCookie(cookieName, value, exdays) {
+      var exdate = new Date();
+      exdate.setDate(exdate.getDate() + exdays);
+      var cookieValue = escape(value)
+            + ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
+      document.cookie = cookieName + "=" + cookieValue;
+   }
+
+   function deleteCookie(cookieName) {
+      var expireDate = new Date();
+      expireDate.setDate(expireDate.getDate() - 1);
+      document.cookie = cookieName + "= " + "; expires="
+            + expireDate.toGMTString();
+   }
+
+   function getCookie(cookieName) {
+      cookieName = cookieName + '=';
+      var cookieData = document.cookie;
+      var start = cookieData.indexOf(cookieName);
+      var cookieValue = '';
+      if (start != -1) {
+         start += cookieName.length;
+         var end = cookieData.indexOf(';', start);
+         if (end == -1)
+            end = cookieData.length;
+         cookieValue = cookieData.substring(start, end);
+      }
+      return unescape(cookieValue);
+   }
+</script>
+
+
+
 <body>
-   <div class=headbar style="border-bottom: 1px solid #e5e5e5;">
+   <%-- <div class="side_panel" style="display: block" id="mySidebar">
       <center>
-         <a href="#"><img src="logo.png" width="150px" height="105px"></a>
+         <br> <br> <br> <br>
+         <spring:message code="login.login" text="default text" />
+         <br>
+
+
+         <p class="id" style="padding-top: 10px">
+            <input name="email" class="inputTypeText w3-padding-small"
+               id="email" type="text"
+               placeholder=<spring:message code="login.email" text="default text" />>
+         </p>
+
+         <p class="passwd">
+            <input name="password" class="inputTypeText w3-padding-small"
+               id="password" type="text"
+               placeholder=<spring:message code="login.password" text="default text" />>
+         </p>
+
+         <span class="idsave"> <input type="checkbox" name="id_store"
+            id="id_store" />&nbsp; <spring:message code="login.emailsave"
+               text="default text" />
+         </span> <br> <br>
+         <p style="padding-top: 10px">
+            <button class="w3-button w3-border w3-hover-grey button"
+               onclick="location.href='<c:url value="/member/loginPro"/>'">
+               <spring:message code="login.login" text="default text" />
+            </button>
+         </p>
+         <p>
+            <button class="w3-button w3-border w3-hover-grey button"
+               onclick="location.href='<c:url value="/member/joinForm"/>'">
+               <spring:message code="login.join" text="default text" />
+            </button>
+         </p>
+
+
+         <a href="<c:url value="/member/emailFindForm"/>"><font
+            color="#585858"><spring:message code="login.findemail"
+                  text="default text" /></font></a> &nbsp; <a
+            href="<c:url value="/member/passwordFindForm"/>"><font
+            color="#585858"><spring:message code="login.findpasswd"
+                  text="default text" /></font></a>
+
       </center>
+   </div> --%>
 
+   <div class="side_panel" style="display: block" id="mySidebar">
+      <center>
+         <br> <br> <br> <br> 누리님 안녕하세요! <br> <br>
+
+         <button class="w3-button w3-border w3-hover-grey button2" onclick="#">
+            로그아웃</button>
+
+         <button class="w3-button w3-border w3-hover-grey button2" onclick="#">
+            마이페이지</button>
+         <div >달력</div>
+
+      </center>
    </div>
-   <div class="sidebar"></div>
-   <nav class="main-menu">
-   <ul>
-      <c:if test="${email == null}">
-         <li><a href="/SYTeamProject/member/loginForm"> <i
-               class="w3-xxlarge glyphicon glyphicon-user"></i> <span
-               class="nav-text"><spring:message code="sidebar.login"
-                     text="default text" /> </span>
-         </a></li>
-      </c:if>
-      <li><a href="#"> <i class="w3-xxlarge material-icons">directions_car</i>
-            <span class="nav-text"> <spring:message code="sidebar.place"
-                  text="default text" /></span>
-      </a></li>
-      <li><a href="#"><i class="w3-xxlarge material-icons">restaurant</i><span
-            class="nav-text"> <spring:message code="sidebar.food"
-                  text="default text" />
-         </span> </a></li>
-      <li><a href="/SYTeamProject/board/list"><i class="w3-xxlarge fa fa-list-alt"></i><span
-            class="nav-text"> <spring:message code="sidebar.board"
-                  text="default text" />
-         </span> </a></li>
 
-      <li><a href="#"><i class="w3-xxlarge fa fa-calendar-check-o"></i><span
-            class="nav-text"><spring:message code="sidebar.calendar"
-                  text="default text" /></span> </a></li>
-   </ul>
-   <c:if test="${email != null}">
-      <ul class="logout">
-         <li><a href="/SYTeamProject/member/logout"> <i class="w3-xxlarge fa fa-power-off"></i>
-               <span class="nav-text"> 로그아웃 </span>
-         </a></li>
-      </ul>
-   </c:if> </nav>
+   <c:if
+      test="${document.getElementById('mySidebar').style.display eq block}">
+      <div class="w3-teal">
+         <button id="openNav" class="btn1" onclick="w3_close()"
+            style="right: 250px;">&#9776;</button>
+      </div>
+   </c:if>
+
+   <c:if
+      test="${document.getElementById('mySidebar').style.display eq none}">
+      <div class="w3-teal">
+         <button id="openNav" class="btn1" onclick="w3_open()"
+            style="right: 0px;">&#9776;</button>
+      </div>
+   </c:if>
+
+   <script>
+      function w3_open() {
+         document.getElementById("mySidebar").style.display = "block";
+         document.getElementById("openNav").style.right = "250px";
+      }
+      function w3_close() {
+         document.getElementById("mySidebar").style.display = "none";
+         document.getElementById("openNav").style.right = "0px";
+      }
+   </script>
+
+   <center>
+      <div style="width: 65%;">
+         <div
+            style="border-bottom: 1px solid #D8D8D8; padding-bottom: 10px; text-align: right;">
+            <br> <a class="menu1" href="/SYTeamProject/member/loginForm">
+               <spring:message code="sidebar.login" text="default text" />
+            </a> &nbsp;&nbsp;&nbsp;<a class="menu1"
+               href="<c:url value="/member/joinForm"/>"><spring:message
+                  code="login.join" text="default text" /></a> &nbsp;&nbsp;&nbsp;<a
+               class="menu1" href="#"> 마이페이지 </a><br>
+         </div>
+
+         <div class="headbar">
+            <br> <a href="#"><img src="/SYTeamProject/images/logo2.png"
+               width="190px" height="160px"><br></a> <br>
+         </div>
+
+         <div class="headbar">
+            <center>
+               <br> <a class="menu2" href="#"> <spring:message
+                     code="sidebar.place" text="default text" />
+               </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="menu2" href="#">
+                  <spring:message code="sidebar.food" text="default text" />
+               </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="menu2"
+                  href="/SYTeamProject/board/list"> <spring:message
+                     code="sidebar.board" text="default text" />
+               </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="menu2" href="#"><spring:message
+                     code="sidebar.calendar" text="default text" /></a> <input
+                  name="search" class="inputTypeText keyword" id="search"
+                  type="text"> <a href="#"><img
+                  src="/SYTeamProject/images/search.PNG" width="24px" height="24px"></a>
+
+
+               <br> <br> <br> <br>
+            </center>
+         </div>
+
+      </div>
+   </center>
+
 </body>
 </html>
