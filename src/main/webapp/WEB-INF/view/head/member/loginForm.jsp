@@ -80,7 +80,7 @@ function getCookie(cookieName) {
 	height: 400px;
 	border: 3px solid lightgrey;
 	border-radius: 15px;
-	margin-top: 250px;
+	/* margin-top: 250px; */
 }
 </style>
 <body>
@@ -128,7 +128,7 @@ function getCookie(cookieName) {
 					<tr>
 						<td colspan=2 class="w3-center">
 							<center>
-								<a href="<c:url value="/member/joinForm"/>"><spring:message code="login.join" text="default text" />&nbsp;</a>|<a href="<c:url value="/member/emailFindForm"/>">&nbsp;<spring:message code="login.findemail" text="default text" />&nbsp;</a>|<a href="<c:url value="/member/passwordFindForm"/>">&nbsp;<spring:message code="login.findpasswd" text="default text" /></a>
+								<a href="<c:url value="/member/joinForm"/>"><font color="#585858"><spring:message code="login.join" text="default text" /></font>&nbsp;</a>|<a href="<c:url value="/member/emailFindForm"/>">&nbsp;<font color="#585858"><spring:message code="login.findemail" text="default text" /></font>&nbsp;</a>|<a href="<c:url value="/member/passwordFindForm"/>">&nbsp;<font color="#585858"><spring:message code="login.findpasswd" text="default text" /></font></a>
 							</center>
 						</td>
 
