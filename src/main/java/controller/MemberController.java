@@ -88,6 +88,7 @@ public class MemberController {
       if(check == 1){
          HttpSession session = request.getSession();
          session.setAttribute("email", email);
+         session.setAttribute("name", dbPro.getName(email));
       }
 
       mv.clear();

@@ -83,7 +83,7 @@ public class MybatisMemberDBBean extends MybatisConnector{
       
       int x=-1;
       try{
-         String dbid = (String) sqlSession.selectOne(namespace + ".update_id", map);
+         String dbid = (String) sqlSession.selectOne(namespace + ".confirmId", map);
          if(dbid.equals(member.getEmail())){
             x = sqlSession.update(namespace + ".updateMember", member);
          }
@@ -147,6 +147,21 @@ public class MybatisMemberDBBean extends MybatisConnector{
       
       return dbpassword;
    }
+   public String getName(String email) throws Exception{
+	      sqlSession = sqlSession();
+	      
+	      String name = "";
+	      try{
+	         HashMap map = new HashMap();
+	         map.put("email", email);
+	         
+	         name = sqlSession.selectOne(namespace + ".getName",map);
+	      }finally{
+	         sqlSession.close();
+	      }
+	      
+	      return name;
+	   }
    
    public String userCheckName(String email, String password) throws Exception{
       sqlSession = sqlSession();

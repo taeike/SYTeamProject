@@ -17,9 +17,10 @@
 		select password from member where email = #{email}
 	</select>
 
-	<select id="update_id" resultType="string" parameterType="hashmap">
-		select email from member where email =#{email}
+	<select id="getName" resultType="string" parameterType="hashmap">
+		select name from member where email = #{email}
 	</select>
+	
 	
 	<update id ="updateMember" parameterType="member">
 		update member set
