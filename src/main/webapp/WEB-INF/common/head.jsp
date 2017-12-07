@@ -87,7 +87,8 @@
 }
 
 a {
-   text-decoration: none;
+   text-decoration: none !important;
+   color: black !important;
 }
 
 .keyword {
@@ -165,7 +166,7 @@ a {
 
 
 <body>
-   <%-- <div class="side_panel" style="display: block" id="mySidebar">
+    <div class="side_panel" style="display: block" id="mySidebar">
       <center>
          <br> <br> <br> <br>
          <spring:message code="login.login" text="default text" />
@@ -210,9 +211,9 @@ a {
                   text="default text" /></font></a>
 
       </center>
-   </div> --%>
+   </div> 
 
-   <div class="side_panel" style="display: block" id="mySidebar">
+  <%--  <div class="side_panel" style="display: block" id="mySidebar">
       <center>
          <br> <br> <br> <br> 누리님 안녕하세요! <br> <br>
 
@@ -224,7 +225,7 @@ a {
          <div >달력</div>
 
       </center>
-   </div>
+   </div> --%>
 
    <c:if
       test="${document.getElementById('mySidebar').style.display eq block}">
@@ -257,7 +258,7 @@ a {
       <div style="width: 65%;">
          <div
             style="border-bottom: 1px solid #D8D8D8; padding-bottom: 10px; text-align: right;">
-            <br> <a class="menu1" href="/SYTeamProject/member/loginForm">
+            <br> <a class="menu1" href="/SYTeamProject/member/loginForm" >
                <spring:message code="sidebar.login" text="default text" />
             </a> &nbsp;&nbsp;&nbsp;<a class="menu1"
                href="<c:url value="/member/joinForm"/>"><spring:message
