@@ -1,298 +1,228 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<!-- <link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
-<link rel="stylesheet"
-   href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet"
-   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<style>
-@import
-   url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.test</groupId>
+	<artifactId>controller</artifactId>
+	<name>Test</name>
+	<packaging>war</packaging>
+	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<properties>
+		<java-version>1.8</java-version>
+		<org.springframework-version>4.2.3.RELEASE</org.springframework-version>
+		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.slf4j-version>1.6.6</org.slf4j-version>
+	</properties>
+	<dependencies>
 
-}
-@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework-version}</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 
-.headbar {
-   height: 100px;
-   width: 100%;
-}
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
 
-.menu1 {
-   font-family: 'Titillium Web', sans-serif;
-   position: relative;
-   color: #000000;
-   font-size: 11px;
-   text-decoration: none;
-}
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>runtime</scope>
+		</dependency>
 
-.menu2 {
-   font-family: 'Titillium Web', sans-serif;
-   position: relative;
-   color: #000000;
-   font-size: 13px;
-   text-decoration: none;
-}
+		<!-- @Inject -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
 
-@font-face {
-   font-family: 'Titillium Web';
-   font-style: normal;
-   font-weight: 300;
-   src: local('Titillium WebLight'), local('TitilliumWeb-Light'),
-      url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff)
-      format('woff');
-}
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 
-.btn1 {
-   position: fixed;
-   right: 0px;
-   top: 50%;
-   margin-top: -30px;
-   width: 30px;
-   height: 30px;
-   cursor: pointer;
-}
-
-.side_panel {
-   position: fixed;
-   right: 0px;
-   top: 0;
-   width: 250px;
-   height: 100%;
-   background: #FFFFFF;
-   border-left: 1px #D8D8D8 solid;
-   z-index: 99;
-   font-size: 11px;
-}
-
-.idsave {
-   float: left;
-   text-align: left;
-   padding-left: 40px;
-}
-
-.button {
-   width: 170px;
-}
-
-.button2 {
-   width: 90px;
-}
-
-a {
-   text-decoration: none !important;
-   color: black !important;
-}
-
-.keyword {
-   width: 150px;
-   height: 22px;
-   line-height: 22px;
-   padding: 0 0 0 3px;
-   border: 0;
-   border-bottom: 1px #333 solid;
-   font-size: 11px;
-   color: #7c8389;
-   background: #fff;
-}
-</style>
-
-<script type="text/javascript">
-   $(document).ready(function() {
-      // 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
-      var userInputEmail = getCookie("userInputEmail");
-      $("input[name='email']").val(userInputEmail);
-
-      if ($("input[name='email']").val() != "") { // 그 전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
-         $("#emailStore").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
-      }
-
-      $("#emailStore").change(function() { // 체크박스에 변화가 있다면,
-         if ($("#emailStore").is(":checked")) { // ID 저장하기 체크했을 때,
-            var userInputEmail = $("input[name='email']").val();
-            setCookie("userInputEmail", userInputEmail, 7); // 7일 동안 쿠키 보관
-         } else { // ID 저장하기 체크 해제 시,
-            deleteCookie("userInputEmail");
-         }
-      });
-
-      // ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
-      $("input[name='email']").keyup(function() { // ID 입력 칸에 ID를 입력할 때,
-         if ($("#emailStore").is(":checked")) { // ID 저장하기를 체크한 상태라면,
-            var userInputEmail = $("input[name='email']").val();
-            setCookie("userInputEmail", userInputEmail, 7); // 7일 동안 쿠키 보관
-         }
-      });
-   });
-
-   function setCookie(cookieName, value, exdays) {
-      var exdate = new Date();
-      exdate.setDate(exdate.getDate() + exdays);
-      var cookieValue = escape(value)
-            + ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
-      document.cookie = cookieName + "=" + cookieValue;
-   }
-
-   function deleteCookie(cookieName) {
-      var expireDate = new Date();
-      expireDate.setDate(expireDate.getDate() - 1);
-      document.cookie = cookieName + "= " + "; expires="
-            + expireDate.toGMTString();
-   }
-
-   function getCookie(cookieName) {
-      cookieName = cookieName + '=';
-      var cookieData = document.cookie;
-      var start = cookieData.indexOf(cookieName);
-      var cookieValue = '';
-      if (start != -1) {
-         start += cookieName.length;
-         var end = cookieData.indexOf(';', start);
-         if (end == -1)
-            end = cookieData.length;
-         cookieValue = cookieData.substring(start, end);
-      }
-      return unescape(cookieValue);
-   }
-</script>
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- spring test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 
 
 
-<body>
-    <div class="side_panel" style="display: block" id="mySidebar">
-      <center>
-         <br> <br> <br> <br>
-         <spring:message code="login.login" text="default text" />
-         <br>
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.3</version>
+		</dependency>
+
+		<!-- mybatis-spring -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+
+		<!-- mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.4.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
 
 
-         <p class="id" style="padding-top: 10px">
-            <input name="email" class="inputTypeText w3-padding-small"
-               id="email" type="text"
-               placeholder=<spring:message code="login.email" text="default text" />>
-         </p>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 
-         <p class="passwd">
-            <input name="password" class="inputTypeText w3-padding-small"
-               id="password" type="text"
-               placeholder=<spring:message code="login.password" text="default text" />>
-         </p>
-
-         <span class="idsave"> <input type="checkbox" name="id_store"
-            id="id_store" />&nbsp; <spring:message code="login.emailsave"
-               text="default text" />
-         </span> <br> <br>
-         <p style="padding-top: 10px">
-            <button class="w3-button w3-border w3-hover-grey button"
-               onclick="location.href='<c:url value="/member/loginPro"/>'">
-               <spring:message code="login.login" text="default text" />
-            </button>
-         </p>
-         <p>
-            <button class="w3-button w3-border w3-hover-grey button"
-               onclick="location.href='<c:url value="/member/joinForm"/>'">
-               <spring:message code="login.join" text="default text" />
-            </button>
-         </p>
+		<dependency>
+			<groupId>oracle.jdbc</groupId>
+			<artifactId>OracleDriver</artifactId>
+			<version>12.1.0.2.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc6.jar</systemPath>
+		</dependency>
 
 
-         <a href="<c:url value="/member/emailFindForm"/>"><font
-            color="#585858"><spring:message code="login.findemail"
-                  text="default text" /></font></a> &nbsp; <a
-            href="<c:url value="/member/passwordFindForm"/>"><font
-            color="#585858"><spring:message code="login.findpasswd"
-                  text="default text" /></font></a>
 
-      </center>
-   </div> 
+		<!-- jsoup HTML parser library @ https://jsoup.org/ -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.11.2</version>
+		</dependency>
 
-  <%--  <div class="side_panel" style="display: block" id="mySidebar">
-      <center>
-         <br> <br> <br> <br> 누리님 안녕하세요! <br> <br>
-
-         <button class="w3-button w3-border w3-hover-grey button2" onclick="#">
-            로그아웃</button>
-
-         <button class="w3-button w3-border w3-hover-grey button2" onclick="#">
-            마이페이지</button>
-         <div >달력</div>
-
-      </center>
-   </div> --%>
-
-   <c:if
-      test="${document.getElementById('mySidebar').style.display eq block}">
-      <div class="w3-teal">
-         <button id="openNav" class="btn1" onclick="w3_close()"
-            style="right: 250px;">&#9776;</button>
-      </div>
-   </c:if>
-
-   <c:if
-      test="${document.getElementById('mySidebar').style.display eq none}">
-      <div class="w3-teal">
-         <button id="openNav" class="btn1" onclick="w3_open()"
-            style="right: 0px;">&#9776;</button>
-      </div>
-   </c:if>
-
-   <script>
-      function w3_open() {
-         document.getElementById("mySidebar").style.display = "block";
-         document.getElementById("openNav").style.right = "250px";
-      }
-      function w3_close() {
-         document.getElementById("mySidebar").style.display = "none";
-         document.getElementById("openNav").style.right = "0px";
-      }
-   </script>
-
-   <center>
-      <div style="width: 65%;">
-         <div
-            style="border-bottom: 1px solid #D8D8D8; padding-bottom: 10px; text-align: right;">
-            <br> <a class="menu1" href="/SYTeamProject/member/loginForm" >
-               <spring:message code="sidebar.login" text="default text" />
-            </a> &nbsp;&nbsp;&nbsp;<a class="menu1"
-               href="<c:url value="/member/joinForm"/>"><spring:message
-                  code="login.join" text="default text" /></a> &nbsp;&nbsp;&nbsp;<a
-               class="menu1" href="#"> 마이페이지 </a><br>
-         </div>
-
-         <div class="headbar">
-            <br> <a href="#"><img src="/SYTeamProject/images/logo2.png"
-               width="190px" height="160px"><br></a> <br>
-         </div>
-
-         <div class="headbar">
-            <center>
-               <br> <a class="menu2" href="#"> <spring:message
-                     code="sidebar.place" text="default text" />
-               </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="menu2" href="#">
-                  <spring:message code="sidebar.food" text="default text" />
-               </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="menu2"
-                  href="/SYTeamProject/board/list"> <spring:message
-                     code="sidebar.board" text="default text" />
-               </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="menu2" href="#"><spring:message
-                     code="sidebar.calendar" text="default text" /></a> <input
-                  name="search" class="inputTypeText keyword" id="search"
-                  type="text"> <a href="#"><img
-                  src="/SYTeamProject/images/search.PNG" width="24px" height="24px"></a>
-
-
-               <br> <br> <br> <br>
-            </center>
-         </div>
-
-      </div>
-   </center>
-
-</body>
-</html>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<additionalProjectnatures>
+						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+					</additionalProjectnatures>
+					<additionalBuildcommands>
+						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+					</additionalBuildcommands>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<compilerArgument>-Xlint:all</compilerArgument>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<configuration>
+					<mainClass>org.test.int1.Main</mainClass>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+ 
